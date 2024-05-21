@@ -1,0 +1,91 @@
+﻿@model WebBanSua.ModelViews.MuaHangSuccessVM
+@{
+    ViewData["Title"] = "Mua hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero Section Begin -->
+<section class="hero hero-normal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="#">
+
+                            <input type="text" placeholder="What do yo u need?">
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                    </div>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>028 3584556</h5>
+                            <span>Hoạt động 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/User-content/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Thông tin mua hàng</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Trang chủ</a>
+                        <span>Thông tin mua hàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+
+        <div class="checkout__form">
+            <h4>ĐẶT HÀNG THÀNH CÔNG</h4>
+            <form>
+               
+                <div class="row">
+                   
+                    <div class="col-lg-6 col-md-8">
+                        <div class="checkout__order">
+                            <h4>Mã đơn hàng: #@Model.DonHangID</h4>
+                            <div class="checkout__order__products">THÔNG TIN ĐƠN HÀNG</div>
+                            <ul>
+                                <li>Người nhận hàng: @Model.FullName</li>
+                                <li>Số điện thoại: @Model.Phone</li>
+                                <li>Địa chỉ: @Model.Address</li>
+                                <li></li>
+                                <br/>
+                                <hr/>
+                                <li>
+                                     Để xem chi tiết đơn hàng vui lòng truy cập vào
+                                    <a asp-controller="Accounts" asp-action="Dashboard"><strong>Tài khoản cá nhân.</strong></a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->

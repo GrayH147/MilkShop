@@ -1,0 +1,52 @@
+﻿@model WebBanSua.Models.Location
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý hệ thống</code><code>> Quản lý quyền tỉnh/thành</code><code>> Tạo mới </code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Tỉnh/thành</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tạo mới</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+
+                    <form asp-action="Create" class="forms-sample">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Tỉnh/thành</label>
+                            <input type="text" class="form-control" asp-for="Name" id="exampleInputUsername1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa phương</label>
+                            <input type="text" asp-for="Type" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Cấp</label>
+                            <input type="text" asp-for="Levels" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <button type="submit" value="Create" class="btn btn-gradient-info me-2">Submit</button>
+
+                        <button asp-action="Index" class="btn btn-light">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

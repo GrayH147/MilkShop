@@ -1,0 +1,218 @@
+﻿@model WebBanSua.Models.Category
+
+@{
+    ViewData["Title"] = "Tạo mới danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles{
+    <link href="~/Admin-content/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Admin-content/summernote/summernote.css" rel="stylesheet" />
+}
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý hệ thống</code><code>> Quản lý danh mục</code><code>> Tạo mới</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Danh mục</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tạo mới</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <form class="forms-sample" asp-controller="AdminCategories" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Tên danh mục</label>
+                            <input type="text" asp-for="CatName" class="form-control" id="exampleInputName1">
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputCity1">Tiêu đề</label>
+                                    <input type="text" class="form-control" id="exampleInputCity1" asp-for="Title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Ordering</label>
+                                    <input type="text" asp-for="Ordering" class="form-control" id="exampleInputEmail3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputCity1">Meta Desc</label>
+                                    <input type="text" class="form-control" id="exampleInputCity1" asp-for="MetaDesc">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputCity1">Meta Key</label>
+                                    <input type="text" class="form-control" id="exampleInputCity1" asp-for="Metakey">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Schema Markup</label>
+                            <input type="text" asp-for="SchemaMarkup" class="form-control" id="exampleInputName1">
+                        </div>
+                        <div class="form-group">
+                            <label>Hình ảnh</label>
+                            <input type="file" name="fThumb" asp-for="Thumb">
+                            <span asp-validation-for="Thumb" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group" id="product-edit-description">
+                            <div class="card">
+                                <div class="card-body">
+                                    <textarea class="summernote" asp-for="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group ">
+            <label for="exampleTextarea1">Nội dung</label>
+            <textarea class="form-control" asp-for="Contents" id="exampleTextarea1" rows="4"></textarea>
+        </div>*@
+
+                        <div class="form-group row">
+                            <div class="form-check form-check-primary">
+                                <label class="form-check-label">
+                                    <input type="checkbox" asp-for="Published" class="form-check-input" checked> Published
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                        <button class="btn btn-light" asp-action="Index">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
+    <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/jquery.validate.min.js"></script>
+    @*<script src="~/Adminassets/summernote/summernote-bs4.js"></script>*@
+    <script src="~/Admin-content/summernote/summernote-bs4.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Create</h1>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CatName" class="control-label"></label>
+                <input asp-for="CatName" class="form-control" />
+                <span asp-validation-for="CatName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label"></label>
+                <input asp-for="ParentId" class="form-control" />
+                <span asp-validation-for="ParentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Levels" class="control-label"></label>
+                <input asp-for="Levels" class="form-control" />
+                <span asp-validation-for="Levels" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ordering" class="control-label"></label>
+                <input asp-for="Ordering" class="form-control" />
+                <span asp-validation-for="Ordering" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Thumb" class="control-label"></label>
+                <input asp-for="Thumb" class="form-control" />
+                <span asp-validation-for="Thumb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alias" class="control-label"></label>
+                <input asp-for="Alias" class="form-control" />
+                <span asp-validation-for="Alias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetaDesc" class="control-label"></label>
+                <input asp-for="MetaDesc" class="form-control" />
+                <span asp-validation-for="MetaDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Metakey" class="control-label"></label>
+                <input asp-for="Metakey" class="form-control" />
+                <span asp-validation-for="Metakey" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cover" class="control-label"></label>
+                <input asp-for="Cover" class="form-control" />
+                <span asp-validation-for="Cover" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SchemaMarkup" class="control-label"></label>
+                <input asp-for="SchemaMarkup" class="form-control" />
+                <span asp-validation-for="SchemaMarkup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+

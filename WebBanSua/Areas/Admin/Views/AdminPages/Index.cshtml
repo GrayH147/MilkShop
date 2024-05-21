@@ -1,0 +1,97 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebBanSua.Models.Page>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách page" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý page</code><code>> Danh sách</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="btn-sm btn-success " asp-action="Create">
+                        <i class="fas fa-plus"></i>
+                        Thêm
+                    </a>
+                </li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                   
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> ID </th>
+                                <th> Hình ảnh </th>
+                                <th> Page </th>
+
+                                <th> Trạng thái </th>
+                                <th class="text-center">
+                                    #
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    string url = $"/page/{item.Alias}";
+                                    <tr>
+                                        <td>@item.PageId</td>
+                                        <td>
+                                            <img src="~/images/pages/@item.Thumb" alt="@item.PageName"/>
+                                        </td>
+                                        <td>
+                                            <a target="_blank" href="@url" >@item.PageName</a>
+
+                                        </td>
+
+                                        <td>
+                                            @if (item.Published == true)
+                                            {
+                                                <div>
+                                                    <i class="mdi mdi-toggle-switch btn-outline-success"></i> Public
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div>
+                                                    <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> Non-public
+                                                </div>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.PageId"><i class="fas fa-edit"></i></a>
+                                            <a class="btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.PageId"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <div aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminPages" asp-action="Index" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

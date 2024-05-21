@@ -1,0 +1,93 @@
+﻿@model WebBanSua.Models.Order
+
+@{
+    ViewData["Title"] = "Thông tin đơn hàng #"+Model.OrderId;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<OrderDetail> odr = ViewBag.ChiTiet;
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý đơn hàng</code><code>> Thông tin</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thông tin</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+       
+    
+        <div class="col-lg-12 col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">THÔNG TIN ĐƠN HÀNG #@Model.OrderId</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <address>
+                                <p class="font-weight-bold">Khách hàng</p>
+                                <p class="font-weight-bold"> Số điện thoại</p>
+                                <p class="font-weight-bold"> Địa chỉ </p>
+                                <p class="font-weight-bold"> Trạng thái đơn hàng </p>
+                            </address>
+                        </div>
+                        <div class="col-md-6">
+                            <address class="text-primary">
+                                <p class="mb-2"> @Model.Customer.FullName </p>
+                                <p class="mb-2"> @Model.Customer.Phone </p>
+                                <p class="mb-2"> @Model.Customer.Address</p>
+                                <p class="mb-2"> @Model.TransactStatus.Status</p>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Sản phẩm </th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (odr != null && odr.Count() > 0)
+                            {
+                                int i = 1;
+                                @foreach (var item in odr)
+                                {
+                                    string url = $"/{item.Product.Alias}-{item.Product.ProductId}.html";
+                                    <tr>
+                                        <td> @i  </td>
+                                        <td> 
+                                            <a href="@url" target="_blank"> @item.Product.ProductName </a>
+                                        </td>
+                                        <td>
+                                            @item.Amount
+                                        </td>
+
+                                        <td>  @item.Price.Value.ToString("#,##0")&#273; </td>
+
+                                        <td> @item.TotalMoney.Value.ToString("#,##0")&#273; </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Tổng tiền</h4>
+                    
+                    <p class="lead"><strong style="color:red !important">@Model.TotalMoney.Value.ToString("#,##0")&#273; </strong> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

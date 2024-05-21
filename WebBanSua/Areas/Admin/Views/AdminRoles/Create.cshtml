@@ -1,0 +1,49 @@
+﻿@model WebBanSua.Models.Role
+
+@{
+    ViewData["Title"] = "Tạo mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý hệ thống</code><code>> Quản lý quyền truy cập</code><code>> Tạo mới </code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Phân quyền</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tạo mới</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+
+                    <form asp-action="Create" class="forms-sample">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                       
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Vai trò</label>
+                            <input type="text" class="form-control" asp-for="RoleName" id="exampleInputUsername1" placeholder="tên vai trò">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả</label>
+                            <input type="text" asp-for="Des" class="form-control" id="exampleInputEmail1" placeholder="Mô tả">
+                        </div>
+
+                        <button type="submit" value="Create" class="btn btn-gradient-info me-2">Submit</button>
+
+                        <button asp-action="Index" class="btn btn-light">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

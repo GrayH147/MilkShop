@@ -1,0 +1,200 @@
+﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                    <img src="~/Public/images/Vinamilk_logo.jpg" alt="profile" />
+
+                    <span class="login-status online"></span>
+                    <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                    <span class="font-weight-bold mb-2">Admin</span>
+                    <span class="text-secondary text-small">Đang hoạt động</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                <span class="menu-title">Trang chủ</span>
+                <i class="mdi mdi-home menu-icon"></i>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">
+                <span class="menu-title">Quản lý sản phẩm</span>
+                <i class="mdi mdi-package menu-icon"></i>
+            </a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#general-pages-2" aria-expanded="false" aria-controls="general-pages-2">
+                <span class="menu-title">Quản lý hệ thống</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-server-security menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages-2">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">Quản lý danh mục</a></li>
+                    <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Quản lý quyền truy cập</a></li>
+                    <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Quản lý tài khoản</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index">
+                <span class="menu-title">Quản lý khách hàng</span>
+                <i class="mdi mdi-account-circle menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="AdminOrders" asp-action="Index">
+                <span class="menu-title">Quản lý đơn hàng</span>
+                <i class="mdi mdi-cart menu-icon"></i>
+            </a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="AdminTblTinTucs" asp-action="Index">
+                <span class="menu-title">Quản lý tin đăng</span>
+                <i class="mdi mdi-newspaper menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="AdminPages" asp-action="Index">
+                <span class="menu-title">Quản lý Page</span>
+                <i class="mdi mdi-layers menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="menu-title">Doanh số</span>
+                <i class="mdi mdi-chart-arc menu-icon"></i>
+            </a>
+        </li>
+        @*<li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="menu-title">Quản lý shipper</span>
+                <i class="mdi mdi-cart menu-icon"></i>
+            </a>
+        </li>*@
+    </ul>
+</nav>
+
+
+
+
+    
+    <!-- Humberger Begin -->
+<!--<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper">
+    <div class="humberger__menu__logo">
+        <a href="#"><img src="~/Public/images/logo_sua.png" alt=""></a>
+    </div>
+    
+    <div class="humberger__menu__widget">
+        <div class="header__top__right__language">         
+        </div>
+        <div class="header__top__right__auth">
+            <a href="@Url.Action("Login", "Home",new {area=""})"><i class="fa fa-sign-out"></i> Logout</a>
+        </div>
+    </div>
+    <nav class="humberger__menu__nav mobile-menu">
+        <ul>
+            <li class="active"><a href="~/Admin/Home/Home">Trang chủ</a></li>
+
+            <li>
+                <a href="@Url.Action("Index", "Product")">Sản phẩm</a>
+                <ul class="header__menu__dropdown">
+                    <li><a href="@Url.Action("Index", "Product")">Danh sách</a></li>
+                    <li><a href="@Url.Action("Create", "Product")">Thêm sản phẩm</a></li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Category")">Loại sản phẩm</a>
+                <ul class="header__menu__dropdown">
+                    <li><a href="@Url.Action("Index", "Category")">Danh sách</a></li>
+                    <li><a href="@Url.Action("Create", "Category")">Thêm loại sản phẩm</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "User")">Tài khoản</a>
+                <ul class="header__menu__dropdown">
+                    <li><a href="@Url.Action("Index", "User")">Danh sách tài khoản</a></li>
+                    <li><a href="@Url.Action("Create", "User")">Thêm Tài khoản</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+    <div class="header__top__right__social">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+    </div>
+    <div class="humberger__menu__contact">
+        <ul>
+            <li><i class="fa fa-envelope"></i> milkshop@gmail.com</li>
+      
+        </ul>
+    </div>
+</div>-->
+<!-- Humberger End -->
+
+
+
+<!--<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="header__logo">
+                <a href="./index.html"><img src="~/Public/images/logo_sua.png" width="130" alt=""></a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <nav class="header__menu">
+                <ul>
+                    <li class="active"><a href="@Url.Action("Home", "Home")">Trang chủ</a></li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Product")">Sản phẩm</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="@Url.Action("Index", "Product")">Danh sách sản phẩm</a></li>
+                            <li><a href="@Url.Action("Create", "Product")">Thêm sản phẩm</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Category")">Loại sản phẩm</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="@Url.Action("Index", "Category")">Danh sách loại sản phẩm</a></li>
+                            <li><a href="@Url.Action("Create", "Category")">Thêm loại sản phẩm</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "User")">Tài khoản</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="@Url.Action("Index", "User")">Danh sách tài khoản</a></li>
+                            <li><a href="@Url.Action("Create", "User")">Thêm Tài khoản</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-lg-3">
+            
+        </div>
+    </div>
+    <div class="humberger__open">
+        <i class="fa fa-bars"></i>
+    </div>
+</div>-->
+
+

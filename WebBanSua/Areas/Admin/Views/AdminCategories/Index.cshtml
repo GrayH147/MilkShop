@@ -1,0 +1,90 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebBanSua.Models.Category>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách danh mục - Page: "+CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý hệ thống</code><code>> Quản lý danh mục</code><code>> Danh sách</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="btn-sm btn-success " asp-controller="AdminCategories" asp-action="Create">
+                        <i class="fas fa-plus"></i>
+                        Thêm
+                    </a>
+                </li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên danh mục</th>
+                                <th>Sắp xếp</th>
+                                <th>Trạng thái</th>
+                                <th class="text-center"> # </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string url = $"/{item.Alias}";
+                                <tr>
+                                    <td>  @item.CatId </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.CatId"> @item.CatName</a>
+                                    </td>
+
+                                    <td>  @item.Ordering </td>
+
+
+                                    <td>
+                                        @if (item.Published)
+                                        {
+                                            <div>
+                                                <i class="mdi mdi-toggle-switch btn-outline-success"></i> Published
+                                            </div>
+
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> None
+                                            </div>
+                                        }
+                                    </td>
+
+
+                                    <td class="text-center">
+                                        <a class="btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.CatId"><i class="fas fa-edit"></i></a>
+                                        <a class="btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.CatId"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

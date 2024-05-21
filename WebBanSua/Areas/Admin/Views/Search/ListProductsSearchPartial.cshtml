@@ -1,0 +1,38 @@
+﻿@model List<Product>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.ProductId </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ProductId">@item.ProductName </a>
+            </td>
+            <td>
+                @item.Cat.CatName
+            </td>
+            <td>@item.PriceSale.Value.ToString("#,##0")&#273;</td>
+            <td> @item.UnitslnStock </td>
+            <td>
+                @if (item.UnitslnStock.Value > 0)
+                {
+                    <div>
+                        <i class="mdi mdi-toggle-switch btn-outline-success"></i> Còn hàng
+                    </div>
+
+                }
+                else
+                {
+                    <div>
+                        <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> Hết hàng
+                    </div>
+                }
+            </td>
+            <td class="text-center">
+                <a class="btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.ProductId"><i class="fas fa-edit"></i></a>
+                <a class="btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.ProductId"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    }
+}

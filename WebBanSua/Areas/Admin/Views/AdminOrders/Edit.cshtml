@@ -1,0 +1,63 @@
+﻿@model WebBanSua.Models.Order
+
+@{
+    ViewData["Title"] = "Cập nhật đơn hàng: #" + Model.OrderId;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý đơn hàng</code><code>> Cập nhật</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cập nhật</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Trạng thái đơn hàng: #@Model.OrderId</h4>
+                    <br />
+                    <form class="forms-sample" asp-controller="AdminOrders" asp-action="Edit" asp-route-id="@Model.OrderId" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="OrderId" />
+                        <input type="hidden" asp-for="OrderDate" />
+                        <input type="hidden" asp-for="Address" />
+                        <input type="hidden" asp-for="CustomerId" />
+                        <input type="hidden" asp-for="TotalMoney" />
+
+
+                        <div class="form-group p-5">
+
+                            <select asp-for="TransactStatusId" class="form-control" asp-items="ViewBag.Trangthai">
+                                <option value="" disabled selected>Trạng thái đơn hàng</option>
+                            </select>
+
+                        </div>
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" asp-for="Paid" class="form-check-input"> Đã giao thành công
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                                <input type="checkbox" asp-for="Deleted" class="form-check-input"> Đã hủy
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-gradient-primary me-2">Save</button>
+                        <button class="btn btn-light" asp-action="Index">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

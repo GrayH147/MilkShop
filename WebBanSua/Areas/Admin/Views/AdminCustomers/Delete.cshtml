@@ -1,0 +1,145 @@
+﻿@model WebBanSua.Models.Customer
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý khách hàng</code><code>> Xác nhận xóa </code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="btn-sm btn-success " asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@Model.CustomerId">
+                        <i class="fas fa-plus"></i>
+                        Cập nhật
+                    </a>
+                </li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Xác nhận xóa: @Model.FullName</h4>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td style="width:80px">
+                                #ID
+                            </td>
+                            <td>
+                                @Model.CustomerId
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Họ và tên
+                            </td>
+                            <td>
+                                @Model.FullName
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td style="width:50px">
+                                Email
+                            </td>
+                            <td>
+                                @Model.Email
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Số điện thoại
+                            </td>
+                            <td>
+                                @Model.Phone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Ngày sinh
+                            </td>
+
+                            @if (Model.Birthday != null)
+                            {
+                                <td>
+                                    @Model.Birthday.Value.ToShortDateString()
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    -
+                                </td>
+                            }
+
+
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Địa  chỉ
+                            </td>
+                            @if (Model.Address != null)
+                            {
+                                <td>
+                                    @Model.Address
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    -
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Ngày tạo
+                            </td>
+                            <td>
+                                @Model.CreateDate
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Active
+                            </td>
+                            <td>
+                                @if (Model.Active)
+                                {
+                                    <div>
+                                        <i class="mdi mdi-toggle-switch btn-outline-success"></i> Active
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> None
+                                    </div>
+                                }
+
+                            </td>
+                        </tr>
+                    </table>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="CustomerId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <a class="btn btn-gradient-light" asp-action="Index">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+

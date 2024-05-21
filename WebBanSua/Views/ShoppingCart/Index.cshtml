@@ -1,0 +1,232 @@
+﻿@model List<WebBanSua.ModelViews.CartItem>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero Section Begin -->
+<section class="hero hero-normal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                @*<div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>Danh mục</span>
+                        </div>
+                        <ul>
+                            <li><a href="#">Fresh Meat</a></li>
+                            <li><a href="#">Vegetables</a></li>
+                            <li><a href="#">Fruit & Nut Gifts</a></li>
+                            <li><a href="#">Fresh Berries</a></li>
+                            <li><a href="#">Ocean Foods</a></li>
+                            <li><a href="#">Butter & Eggs</a></li>
+                            <li><a href="#">Fastfood</a></li>
+                            <li><a href="#">Fresh Onion</a></li>
+                            <li><a href="#">Papayaya & Crisps</a></li>
+                            <li><a href="#">Oatmeal</a></li>
+                            <li><a href="#">Fresh Bananas</a></li>
+                        </ul>
+                    </div>*@
+            </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="#">
+
+                            <input type="text" placeholder="Tìm kiếm...">
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                    </div>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>028 3584556</h5>
+                            <span>Hoạt động 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/User-content/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Giỏ hàng</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>Giỏ hàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="100" class="shoping__product">Sản phẩm</th>
+                                    <th></th>
+
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        string url = $"/{item.product.Alias}-{item.product.ProductId}.html";
+                                        <tr>
+                                            <td>
+                                                <img src="~/images/products/@item.product.Thumb" alt="error">
+                                            </td>
+                                            <td class="shoping__cart__item">
+
+                                                <h5><a href="@url"> @item.product.ProductName</a></h5>
+                                            </td>
+                                            <td class="shoping__cart__price">
+                                                @item.product.PriceSale.Value.ToString("#,##0")&#273;
+                                            </td>
+                                            <td class="shoping__cart__quantity">
+                                                <div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <input type="number" data-mahh="@item.product.ProductId" data-dongia="@item.product.PriceSale"  class="cartItem" min="1" value="@item.amount">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="shoping__cart__total">
+                                                @item.TotalMoney.ToString("#,##0")&#273;
+                                            </td>
+                                            <td data-mahh="@item.product.ProductId" class="removecart shoping__cart__item__close">
+                                                <span data-mahh="@item.product.ProductId" class="removecart icon_close"></span>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="/shop.html" class="primary-btn cart-btn">Tiếp tục mua hàng</a>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Mã giảm giá</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your coupon code">
+                                <button type="submit" class="site-btn">Áp dụng</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5> Thành tiền </h5>
+                        <ul>
+                            <li>Tổng tiền<span>@Model.Sum(x => x.TotalMoney).ToString("#,##0")&#273;</span></li>
+                        </ul>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="/checkout.html" class="primary-btn">Thanh toán</a>
+                        }
+                        else
+                        {
+                            <a href="/dang-nhap.html?returnUrl=/checkout.html" class="primary-btn">Thanh toán</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <h4>Chưa có hàng hóa trong giỏ hàng!</h4>
+            </div>
+        }
+
+
+    </div>
+</section>
+<!-- Shoping Cart Section End -->
+
+@section Scripts{
+    <script>
+    $(function () {
+        function loadHeaderCart() {
+            /*$('#miniCart').load("/AjaxContent/HeaderCart");*/
+            $('#numberCart').load("/AjaxContent/NumberCart");
+        }
+        $(".removecart").click(function () {
+            var productid = $(this).attr("data-mahh");
+            $.ajax({
+                url: "api/cart/remove",
+                type: "POST",
+                dataType: "JSON",
+                data: { productID: productid },
+                success: function (result) {
+                    if (result.success) {
+                        loadHeaderCart();//Reload lai gio hang
+                        location.reload();
+                    }
+                },
+                error: function (rs) {
+                    alert("Remove Cart Error !")
+                }
+            });
+        });
+        $(".cartItem").click(function () {
+            var productid = $(this).attr("data-mahh");
+            var soluong = parseInt($(this).val());
+            $.ajax({
+                url: "api/cart/update",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    productID: productid,
+                    amount: soluong
+                },
+                success: function (result) {
+                    if (result.success) {
+                        loadHeaderCart();//Reload lai gio hang
+                        window.location = 'cart.html';
+                    }
+                },
+                error: function (rs) {
+                    alert("Cập nhật Cart Error !")
+                }
+            });
+        });
+    });
+    </script>
+}

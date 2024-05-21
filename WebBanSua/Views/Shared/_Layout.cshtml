@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Web bán sữa</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    @*<link href="~/User-content/css/all.min.css" rel="stylesheet" />
+    <link href="~/User-content/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/User-content/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="~/User-content/css/elegant-icons.css" rel="stylesheet" />
+
+    <link href="~/User-content/css/nice-select.css" rel="stylesheet" />
+
+    <link href="~/User-content/css/jquery-ui.min.css" rel="stylesheet" />
+
+    <link href="~/User-content/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/User-content/css/slicknav.min.css" rel="stylesheet" />
+
+    <link href="~/User-content/css/style.css" rel="stylesheet" />*@
+
+
+
+
+
+
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+
+    <!-- Css Styles -->
+    <link href="~/Public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+    <link href="~/Public/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Public/css/elegant-icons.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Public/css/nice-select.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Public/css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Public/css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Public/css/slicknav.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Public/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @await RenderSectionAsync("header", required: false)
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!--Header Begin-->
+    @await Html.PartialAsync("_HeaderPartialView.cshtml")
+    <!--Header end-->
+
+    @RenderBody()
+
+
+    <!-- Footer Section Begin -->
+    @await Html.PartialAsync("_FooterPartialView.cshtml")
+    <!-- Footer Section End -->
+
+
+
+    @*<script src="~/User-content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/User-content/js/bootstrap.min.js"></script>
+    <script src="~/User-content/js/jquery.nice-select.min.js"></script>
+    <script src="~/User-content/js/jquery-ui.min.js"></script>
+    <script src="~/User-content/js/jquery.slicknav.js"></script>
+    <script src="~/User-content/js/mixitup.min.js"></script>
+    <script src="~/User-content/js/owl.carousel.min.js"></script>
+
+    <script src="~/User-content/js/main.js"></script>*@
+
+    <!-- Js Plugins -->
+    <script src="~/Public/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Public/js/bootstrap.min.js"></script>
+    <script src="~/Public/js/jquery.nice-select.min.js"></script>
+    <script src="~/Public/js/jquery-ui.min.js"></script>
+    <script src="~/Public/js/jquery.slicknav.js"></script>
+    <script src="~/Public/js/mixitup.min.js"></script>
+    <script src="~/Public/js/owl.carousel.min.js"></script>
+
+    <script src="~/Public/js/main.js"></script>
+    @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

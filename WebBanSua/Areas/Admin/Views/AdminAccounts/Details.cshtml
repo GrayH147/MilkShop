@@ -1,0 +1,109 @@
+﻿@model WebBanSua.Models.Account
+
+@{
+    ViewData["Title"] = "Thông tin"+ Model.FullName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý hệ thống</code><code>> Quản lý tài khoản</code><code>> Thông tin</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="btn-sm btn-success " asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@Model.AccountId">
+                        <i class="fas fa-plus"></i>
+                        Cập nhật
+                    </a>
+                </li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Thông tin tài khoản của: @Model.FullName</h4>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td style="width:80px">
+                                #ID
+                            </td>
+                            <td>
+                                @Model.AccountId
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Họ và tên
+                            </td>
+                            <td>
+                                @Model.FullName
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td style="width:50px">
+                                Email
+                            </td>
+                            <td>
+                                @Model.Email
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Giá bán
+                            </td>
+                            <td>
+                                @Model.Phone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Vai trò
+                            </td>
+                            <td>
+                                @Model.Role.Des
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Ngày tạo
+                            </td>
+                            <td>
+                                @Model.CreateDate
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Active
+                            </td>
+                            <td>
+                                @if (Model.Active)
+                                {
+                                    <div>
+                                        <i class="mdi mdi-toggle-switch btn-outline-success"></i> Active
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> None
+                                    </div>
+                                }
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

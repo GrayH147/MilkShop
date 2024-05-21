@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<WebBanSua.Models.Customer> cus = (List<WebBanSua.Models.Customer>)ViewBag.cus;
+    List<WebBanSua.Models.OrderDetail> odt = (List<WebBanSua.Models.OrderDetail>)ViewBag.Odt;
+    List<WebBanSua.Models.Order> billCompleted = (List<WebBanSua.Models.Order>)ViewBag.OdrComplete;
+    List<WebBanSua.Models.Order> billDelete = (List<WebBanSua.Models.Order>)ViewBag.OdrDelete;
+    List<WebBanSua.Models.Order> odr = (List<WebBanSua.Models.Order>)ViewBag.Odr;
+    List<WebBanSua.Models.Product> p = (List<WebBanSua.Models.Product>)ViewBag.p;
+    List<WebBanSua.Models.Account> nv = (List<WebBanSua.Models.Account>)ViewBag.nv;
+
+
+
+    int s = 0;
+    for (int i = 0; i < 2; i++)
+    {
+        s = Convert.ToInt32(odt[i].ProductId);
+    }
+
+    double price = 0;
+    for(int i = 0; i < odr.Count; i++)
+    {
+        price += Convert.ToDouble(odr[i].TotalMoney);
+    }
+}
+
+
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                    <i class="mdi mdi-home"></i>
+                </span> Trang chủ
+            </h3>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                            Khách hàng <i class="mdi mdi-account-circle mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", cus.Count)</h2>
+                        <h6 class="card-text">Tài khoản</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-info card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                           Số sản phẩm <i class="mdi mdi-package mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", p.Count)</h2>
+                        <h6 class="card-text">Sản phẩm</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                            Doanh thu <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", price)&#273;</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-warning card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                            Số nhân viên<i class="mdi mdi-account-circle mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", nv.Count)</h2>
+                        <h6 class="mb-3">nhân viên</h6>
+                        <h6 class="card-text"></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                            Tổng đơn<i class="mdi mdi-receipt mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", odr.Count)</h2>
+                        <h6 class="card-text">đơn hàng</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-info card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                           Đơn hoàn thành <i class="mdi mdi-package mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", billCompleted.Count)</h2>
+                        <h6 class="card-text">đơn hàng</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                            Đơn hủy<i class="mdi mdi-cart-off mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", billDelete.Count)</h2>
+                        <h6 class="mb-3">đơn hàng</h6>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-3 stretch-card grid-margin">
+                <div class="card bg-gradient-warning card-img-holder text-white">
+                    <div class="card-body">
+                        <img src="~/Admin-content/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                        <h4 class="font-weight-normal mb-3">
+                            Đã bán<i class="mdi mdi-briefcase-check mdi-24px float-right"></i>
+                        </h4>
+                        <h2 class="mb-2">@String.Format("{0:0,0}", s)</h2>
+                        <h6 class="mb-3">sản phẩm</h6>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-7 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="clearfix">
+                            <h4 class="card-title float-left">Doanh thu theo tháng</h4>
+                            <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"></div>
+                        </div>
+                        <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hàng bán chạy</h4>
+                        <canvas id="traffic-chart"></canvas>
+                        <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Khách hàng</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">ID</th>
+                                        <th>Họ và tên</th>
+
+                                        <th>Email</th>
+                                        <th>SDT</th>
+                                        <th>Trạng thái</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in cus)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@item.CustomerId</td>
+
+
+                                            <td>@item.FullName</td>
+
+
+                                            <td>@item.Email</td>
+                                            <td>+84 @item.Phone</td>
+                                            <td>
+                                                @if (item.Active)
+                                                {
+                                                    <div>
+                                                        <i class="mdi mdi-toggle-switch btn-outline-success"></i> Active
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div>
+                                                        <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> Blocked
+                                                    </div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

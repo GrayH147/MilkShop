@@ -1,0 +1,74 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebBanSua.Models.Order>
+@{
+    ViewData["Title"] = "Danh sách đơn hàng - Page: "+ViewBag.CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý đơn hàng</code><code>> Danh sách</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cập nhật</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Đơn hàng </th>
+                                <th>Ngày mua</th>
+                                <th>Tổng Tiền</th>
+                                <th>Trạng thái</th>
+                                <th class="text-center"> # </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>  @item.OrderId </td>
+                                    <td>
+                                       @item.Customer.FullName
+                                    </td>
+
+                                    <td>  @item.OrderDate </td>
+
+                                    <td> @item.TotalMoney.Value.ToString("#,##0")&#273; </td>
+
+                                    <td>
+                                        @item.TransactStatus.Status
+                                    </td>
+
+
+                                    <td class="text-center">
+                                        <a class="btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.OrderId"><i class="fas fa-eye"></i></a>
+                                        <a class="btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.OrderId"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminOrders" asp-action="Index" />
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

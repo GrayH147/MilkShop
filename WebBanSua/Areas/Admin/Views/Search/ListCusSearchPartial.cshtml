@@ -1,0 +1,22 @@
+﻿@model List<Customer>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CustomerId</td>
+            <td>
+                <a style="color:black;" asp-action="Details" asp-route-id="@item.CustomerId">@item.FullName</a>
+            </td>
+            <td> @item.Email </td>
+            <td> @item.Phone </td>
+            <td> @item.Address </td>
+            <td> @item.Location.Name </td>
+            <td>
+                <a class="btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.CustomerId"><i class="fas fa-edit"></i></a>
+                <a class="btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.CustomerId"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    }
+}

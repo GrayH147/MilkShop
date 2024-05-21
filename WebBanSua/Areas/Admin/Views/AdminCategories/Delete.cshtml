@@ -1,0 +1,139 @@
+﻿@model WebBanSua.Models.Category
+
+@{
+    ViewData["Title"] = "Xác nhận xóa: "+Model.CatName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <p class="card-description">
+            <a asp-controller="Home" asp-action="Index"><code>Home</code></a><code>> Quản lý hệ thống</code><code>> Quản lý danh mục</code><code>> Xác nhận xóa</code>
+        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="btn-sm btn-success " asp-controller="AdminCategories" asp-action="Edit" asp-route-id="@Model.CatId">
+                        <i class="fas fa-plus"></i>
+                        Cập nhật
+                    </a>
+                </li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Xác nhận xóa: @Model.CatName</h4>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td style="width:80px">
+                                #ID
+                            </td>
+                            <td>
+                                @Model.CatId
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:80px">
+                                Hình ảnh
+                            </td>
+                            <td>
+                                <img width="400" height="400" src="~/images/categories/@Model.Thumb" alt="@Model.CatName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Tên page
+                            </td>
+                            <td>
+                                @Model.CatName
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width:50px">
+                                Tiêu đề
+                            </td>
+                            <td>
+                                @Model.Title
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width:50px">
+                                Meta Desc
+                            </td>
+                            <td>
+                                @Model.MetaDesc
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Meta Key
+                            </td>
+                            <td>
+                                @Model.Metakey
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Alias
+                            </td>
+                            <td>
+                                @Model.Alias
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Active
+                            </td>
+                            <td>
+                                @if (Model.Published)
+                                {
+                                    <div>
+                                        <i class="mdi mdi-toggle-switch btn-outline-success"></i> Publish
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <i class="mdi mdi-toggle-switch-off btn-outline-danger"></i> None
+                                    </div>
+                                }
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Ordering
+                            </td>
+                            <td>
+                                @Model.Ordering
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50px">
+                                Schema Markup
+                            </td>
+                            <td>
+                                @Model.SchemaMarkup
+                            </td>
+                        </tr>
+
+                    </table>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="CatId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" /> 
+                        <a class="btn btn-gradient-light" asp-action="Index">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
